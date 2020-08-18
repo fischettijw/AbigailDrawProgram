@@ -1,6 +1,7 @@
 //  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
 
 let colorPicker;
+let thicknessSlider;
 let drawColor;
 let penThickness;
 let smouseX;
@@ -23,10 +24,13 @@ function initializeDraw(){
   colorPicker = createColorPicker('#FFFFFF');
   drawColor = colorPicker.color();
   colorPicker.position(5, height + 5);
+  thicknessSlider = createSlider(1,70,10,1);
+  thicknessSlider.position(60,height+9);
 }
 
 function draw(){
   drawColor = colorPicker.color();
+  penThickness = thicknessSlider.value();
   if(mouseIsPressed){ drawLine(); }
   drawColorIcon();
 }
