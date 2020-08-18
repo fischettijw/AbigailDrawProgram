@@ -1,6 +1,6 @@
 //  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
 
-
+let colorPicker;
 let drawColor;
 let penThickness;
 let smouseX;
@@ -11,7 +11,7 @@ let cAs;
 let Cas;
 
 function setup(){
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth,windowHeight-40);
   initializeDraw();
 }
 
@@ -20,9 +20,13 @@ function initializeDraw(){
   drawColor = color(255);
   penThickness = 5;
   background(0);
+  colorPicker = createColorPicker('#FFFFFF');
+  drawColor = colorPicker.color();
+  colorPicker.position(5, height + 5);
 }
 
 function draw(){
+  drawColor = colorPicker.color();
   if(mouseIsPressed){ drawLine(); }
   drawColorIcon();
 }
@@ -42,9 +46,8 @@ function drawLine(){
   }else if (CAs){
     if (dist(smouseX,smouseY,mouseX, mouseY) > 5){    
        drawLineWithArrow(createVector(smouseX,smouseY), 
-                         createVector(mouseX,mouseY), drawColor);
+       createVector(mouseX,mouseY), drawColor);
     }
-    
   }else if (caS) {
     line(smouseX,smouseY,mouseX,smouseY);    
     mouseY = smouseY; 
@@ -101,7 +104,6 @@ function keyPressed(){
     if(key > '0' && key < '7'){ penThickness = key * 10;}
 
     if(key == '!') {initializeDraw();}       // clear screen
-    
   }
 
 function drawLineWithArrow(base, vec, myColor) {
