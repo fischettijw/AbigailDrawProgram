@@ -1,5 +1,3 @@
-//  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
-
 let ctrlFlag, btnClear, cbxRandomColors, colorPicker, thicknessSlider;
 let drawColor, penThickness;
 let smouseX, smouseY;
@@ -15,7 +13,7 @@ function initializeDraw(){
   drawColor = color(255);
   penThickness = 10;
   background(0);
-  if(ctrlFlag == null){;
+  if(ctrlFlag == null){
     colorPicker = createColorPicker(drawColor);
     drawColor = colorPicker.color();
     colorPicker.position(5, height + 5);
@@ -31,17 +29,16 @@ function initializeDraw(){
 }
 
 function btnClearClicked(){
-   initializeDraw();
+  initializeDraw();
+  // thicknessSlider.value(10);
 }
 
 function draw(){
   if(cbxRandomColors.checked()){
     drawColor = color(random(0,255), random(0,255), random(0,255));
-  }else
-  {
+  }else{
     drawColor = colorPicker.color();
   }
-
   penThickness = thicknessSlider.value();
   if(mouseIsPressed){ drawLine(); }
 }
