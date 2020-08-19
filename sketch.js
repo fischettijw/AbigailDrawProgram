@@ -1,24 +1,17 @@
 //  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
 
-let btnClear;
-let cbxRandomColors;
-let colorPicker;
-let thicknessSlider;
-let drawColor;
-let penThickness;
-let smouseX;
-let smouseY;
-let CAS;
-let caS;
-let cAs;
-let Cas;
+let btnClear, cbxRandomColors;
+let colorPicker, thicknessSlider;
+let drawColor, penThickness;
+let smouseX, smouseY;
+let CAS, caS, cAs, Cas, CAs;
 
 function setup(){
   createCanvas(windowWidth,windowHeight-40);
   initializeDraw();
 }
 
-function initializeDraw(){
+function initializeDraw(){     // need to remove creates - after clear multiple imstances
   strokeCap(ROUND);
   drawColor = color(255);
   penThickness = 5;
@@ -35,9 +28,7 @@ function initializeDraw(){
   btnClear.mousePressed(btnClearClicked);
 }
 
-
 function draw(){
-
   if(cbxRandomColors.checked()){
     drawColor = color(random(0,255), random(0,255), random(0,255));
   }else
@@ -47,7 +38,6 @@ function draw(){
 
   penThickness = thicknessSlider.value();
   if(mouseIsPressed){ drawLine(); }
-  // drawColorIcon();
 }
 
 function btnClearClicked(){
@@ -57,7 +47,7 @@ function btnClearClicked(){
 function drawLine(){
   CAS = keyIsDown(CONTROL)==true && keyIsDown(ALT)==true && keyIsDown(SHIFT)==true;
   caS = keyIsDown(CONTROL)==false && keyIsDown(ALT)==false && keyIsDown(SHIFT)==true;
-  // cAs = keyIsDown(CONTROL)==false && keyIsDown(ALT)==true && keyIsDown(SHIFT)==false;
+  cAs = keyIsDown(CONTROL)==false && keyIsDown(ALT)==true && keyIsDown(SHIFT)==false;
   Cas = keyIsDown(CONTROL)==true && keyIsDown(ALT)==false && keyIsDown(SHIFT)==false;
   CAs = keyIsDown(CONTROL)==true && keyIsDown(ALT)==true && keyIsDown(SHIFT)==false;  
 
@@ -83,49 +73,7 @@ function drawLine(){
 
   smouseX = mouseX;
   smouseY = mouseY;
-  //  https://p5js.org/reference/#p5/keyCode
-  //  BACKSPACE, DELETE, ENTER, RETURN, TAB, ESCAPE, SHIFT, CONTROL, 
-  //  OPTION, ALT, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW
 }
-
-// function drawColorIcon(){
-//   noStroke();
-//   fill(drawColor);
-//   ellipse(50, 50, 90,90);
-//   fill(128);
-//   ellipse(50, 50, 80, 80);
-//   fill(drawColor);
-//   ellipse(50, 50, penThickness, penThickness);       
-// }
-
-// function keyPressed(){
-    // if(key == 'r') {drawColor = color(255,0,0);}      // Red
-    // if(key == 'g') {drawColor = color(0,255,0);}      // Green
-    // if(key == 'b') {drawColor = color(0,0,255);}      // Blue
-    // if(key == 'R') {background(255,0,0);}             // Red Background
-    // if(key == 'G') {background(0,255,0);}             // Green Background
-    // if(key == 'B') {background(0,0,255);}             // Blue Background
-
-    // if(key == 'c') {drawColor = color(0,255,255);}    // Cyan
-    // if(key == 'y') {drawColor = color(255,255,0);}    // Yellow
-    // if(key == 'm') {drawColor = color(255,0,255);}    // Magenta
-    // if(key == 'C') {background(0,255,255);}           // Cyan Backgroundc
-
-    // if(key == 'w') {drawColor = color(255,255,255);}  // White
-    // if(key == 'k') {drawColor = color(0,0,0);}        // Black
-    // if(key == 'W') {background(255,255,255);}         // White Background
-    // if(key == 'K') {background(0,0,0);}               // Black Background
-
-    // if(key == 'x') {drawColor = color(random(0,255), random(0,255), random(0,255));}  // Random Color
-    // if(key == 'X') {background(random(0,255), random(0,255), random(0,255));}         // Random Background Color
-
-    // if(key == '+' && penThickness < 60) {penThickness += 1; }    // increase penThickness up to 60
-    // if(key == '-' && penThickness > 1) {penThickness -= 1; }    // decrease penThickness down to 1
-
-    // if(key > '0' && key < '7'){ penThickness = key * 10;}
-
-    // if(key == '!') {initializeDraw();}       // clear screen
-  // }
 
 function drawLineWithArrow(base, vec, myColor) {
   vec.sub(base);
