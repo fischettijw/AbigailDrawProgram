@@ -1,5 +1,3 @@
-//  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
-
 let ctrlFlag, btnClear, cbxRandomColors, colorPicker, thicknessSlider;
 let drawColor, penThickness;
 let smouseX, smouseY;
@@ -41,7 +39,6 @@ function draw(){
   {
     drawColor = colorPicker.color();
   }
-
   penThickness = thicknessSlider.value();
   if(mouseIsPressed){ drawLine(); }
 }
