@@ -1,5 +1,6 @@
 //  https://p5js.org/reference/#/p5.Vector/reflect      DRAW ARROW
 
+let cbxRandomColors;
 let colorPicker;
 let thicknessSlider;
 let drawColor;
@@ -26,10 +27,24 @@ function initializeDraw(){
   colorPicker.position(5, height + 5);
   thicknessSlider = createSlider(1,70,10,1);
   thicknessSlider.position(60,height+9);
+  cbxRandomColors = createCheckbox('Random Colors', false);
+  cbxRandomColors.position(200,height + 9)
+  cbxRandomColors.changed(randomColors);
+}
+
+function randomColors(){
+
 }
 
 function draw(){
-  drawColor = colorPicker.color();
+
+  if(cbxRandomColors.checked()){
+    drawColor = color(random(0,255), random(0,255), random(0,255));
+  }else
+  {
+    drawColor = colorPicker.color();
+  }
+
   penThickness = thicknessSlider.value();
   if(mouseIsPressed){ drawLine(); }
   drawColorIcon();
@@ -80,32 +95,30 @@ function drawColorIcon(){
 }
 
 function keyPressed(){
-    if(key == 'r') {drawColor = color(255,0,0);}      // Red
-    if(key == 'g') {drawColor = color(0,255,0);}      // Green
-    if(key == 'b') {drawColor = color(0,0,255);}      // Blue
-    if(key == 'R') {background(255,0,0);}             // Red Background
-    if(key == 'G') {background(0,255,0);}             // Green Background
-    if(key == 'B') {background(0,0,255);}             // Blue Background
+    // if(key == 'r') {drawColor = color(255,0,0);}      // Red
+    // if(key == 'g') {drawColor = color(0,255,0);}      // Green
+    // if(key == 'b') {drawColor = color(0,0,255);}      // Blue
+    // if(key == 'R') {background(255,0,0);}             // Red Background
+    // if(key == 'G') {background(0,255,0);}             // Green Background
+    // if(key == 'B') {background(0,0,255);}             // Blue Background
 
-    if(key == 'c') {drawColor = color(0,255,255);}    // Cyan
-    if(key == 'y') {drawColor = color(255,255,0);}    // Yellow
-    if(key == 'm') {drawColor = color(255,0,255);}    // Magenta
-    if(key == 'C') {background(0,255,255);}           // Cyan Background
-    if(key == 'Y') {background(255,255,0);}           // Yellow Background
-    if(key == 'M') {background(255,0,255);}           // Magenta Background
+    // if(key == 'c') {drawColor = color(0,255,255);}    // Cyan
+    // if(key == 'y') {drawColor = color(255,255,0);}    // Yellow
+    // if(key == 'm') {drawColor = color(255,0,255);}    // Magenta
+    // if(key == 'C') {background(0,255,255);}           // Cyan Backgroundc
 
-    if(key == 'w') {drawColor = color(255,255,255);}  // White
-    if(key == 'k') {drawColor = color(0,0,0);}        // Black
-    if(key == 'W') {background(255,255,255);}         // White Background
-    if(key == 'K') {background(0,0,0);}               // Black Background
+    // if(key == 'w') {drawColor = color(255,255,255);}  // White
+    // if(key == 'k') {drawColor = color(0,0,0);}        // Black
+    // if(key == 'W') {background(255,255,255);}         // White Background
+    // if(key == 'K') {background(0,0,0);}               // Black Background
 
-    if(key == 'x') {drawColor = color(random(0,255), random(0,255), random(0,255));}  // Random Color
-    if(key == 'X') {background(random(0,255), random(0,255), random(0,255));}         // Random Background Color
+    // if(key == 'x') {drawColor = color(random(0,255), random(0,255), random(0,255));}  // Random Color
+    // if(key == 'X') {background(random(0,255), random(0,255), random(0,255));}         // Random Background Color
 
-    if(key == '+' && penThickness < 60) {penThickness += 1; }    // increase penThickness up to 60
-    if(key == '-' && penThickness > 1) {penThickness -= 1; }    // decrease penThickness down to 1
+    // if(key == '+' && penThickness < 60) {penThickness += 1; }    // increase penThickness up to 60
+    // if(key == '-' && penThickness > 1) {penThickness -= 1; }    // decrease penThickness down to 1
 
-    if(key > '0' && key < '7'){ penThickness = key * 10;}
+    // if(key > '0' && key < '7'){ penThickness = key * 10;}
 
     if(key == '!') {initializeDraw();}       // clear screen
   }
